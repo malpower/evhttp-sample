@@ -10,10 +10,11 @@ class Request
 {
 public:
     Request(evhttp_request *req);
-    void virtual end(const char *content,unsigned int status,const char *statusText);
-    void virtual end(const char *content,unsigned int status);
-    void virtual end(const char *content);
-    void virtual setHeader(const char *name,const char *content);
+    virtual void end(const char *content,unsigned int status,const char *statusText);
+    virtual void end(const char *content,unsigned int status);
+    virtual void end(const char *content);
+    virtual void setHeader(const char *name,const char *content);
+    virtual std::map<std::string,std::string> getParameters();
     evhttp_cmd_type virtual method();
     evbuffer virtual *getBody();
 private:

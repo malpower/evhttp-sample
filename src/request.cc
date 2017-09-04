@@ -39,3 +39,9 @@ evbuffer *Request::getBody()
 {
     return evhttp_request_get_input_buffer(request);
 }
+
+std::map<std::string,std::string> Request::getParameters()
+{
+    std::map<std::string,std::string> x;
+    return x;
+}

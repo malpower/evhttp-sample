@@ -8,5 +8,6 @@
 #include <event2/buffer.h>
 #include <memory>
 #include <vector>
+#include <map>
 
 #endif

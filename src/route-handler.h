@@ -7,10 +7,11 @@
 class RouteHandler
 {
 public:
-    void virtual process(Request &request) const =0;
-    bool virtual match(const std::string &path,const evhttp_cmd_type &method) const =0;
+    virtual void process(Request &request) const =0;
+    virtual bool match(const std::string &path,const evhttp_cmd_type &method) const =0;
 private:
     char *path;
 };
 
 #endif
+

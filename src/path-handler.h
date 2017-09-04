@@ -9,8 +9,8 @@ class PathHandler: public RouteHandler
 {
 public:
     PathHandler(const std::string path,const evhttp_cmd_type &method);
-    bool virtual match(const std::string &path,const evhttp_cmd_type &method) const;
-    void virtual process(Request &request) const =0;
+    virtual bool match(const std::string &path,const evhttp_cmd_type &method) const;
+    virtual void process(Request &request) const =0;
 protected:
     std::string attachTo;
     evhttp_cmd_type acceptedMethod;
