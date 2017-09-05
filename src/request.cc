@@ -61,12 +61,12 @@ map<string,string> Request::getFormData()
     return splitParameters(src);
 }
 
-map<string,string> Request::splitParameters(const std::string &src)
+map<string,string> Request::splitParameters(const string &src)
 {
     map<string,string> params;
-    std::string url=src;
-    std::regex r("[^&=\?]*=[^&=]*");
-    for (std::sregex_token_iterator it(url.cbegin(),url.cend(),r),end;it!=end;it++)
+    string url=src;
+    regex r("[^&=\?]*=[^&=]*");
+    for (sregex_token_iterator it(url.cbegin(),url.cend(),r),end;it!=end;it++)
     {
         vector<string> v=splitString(*it,'=');
         params[v[0]]=v[1];
@@ -74,9 +74,9 @@ map<string,string> Request::splitParameters(const std::string &src)
     return params;
 }
 
-std::vector<std::string> Request::splitString(const std::string &src,const char s) const
+vector<string> Request::splitString(const string &src,const char s) const
 {
-    std::vector<std::string> v;
+    vector<string> v;
     int p=0;
     for (int i=0;i<src.length();i++)
     {
@@ -92,8 +92,8 @@ std::vector<std::string> Request::splitString(const std::string &src,const char 
     }
     return v;
 }
-std::string Request::getPath() const
+string Request::getPath() const
 {
-    std::vector<std::string> v=splitString(evhttp_request_get_uri(request),'?');
+    vector<string> v=splitString(evhttp_request_get_uri(request),'?');
     return v[0];
 }
