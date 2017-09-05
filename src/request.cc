@@ -1,6 +1,10 @@
 #include "request.h"
 
 
+using namespace std;
+
+
+
 Request::Request(evhttp_request *req):
 request(req){}
 
@@ -40,8 +44,56 @@ evbuffer *Request::getBody()
     return evhttp_request_get_input_buffer(request);
 }
 
-std::map<std::string,std::string> Request::getParameters()
+map<string,string> Request::getQuery()
 {
-    std::map<std::string,std::string> x;
-    return x;
+    return splitParameters(evhttp_request_get_uri(request));
+}
+
+map<string,string> Request::getFormData()
+{
+    evbuffer *body=getBody();
+    unsigned long size=evbuffer_get_length(body);
+    char *mem=new char[size+1];
+    mem[size]=0;
+    evbuffer_copyout(body,mem,size);
+    string src=mem;
+    delete[] mem;
+    return splitParameters(src);
+}
+
+map<string,string> Request::splitParameters(const std::string &src)
+{
+    map<string,string> params;
+    std::string url=src;
+    std::regex r("[^&=\?]*=[^&=]*");
+    for (std::sregex_token_iterator it(url.cbegin(),url.cend(),r),end;it!=end;it++)
+    {
+        vector<string> v=splitString(*it,'=');
+        params[v[0]]=v[1];
+    }
+    return params;
+}
+
+std::vector<std::string> Request::splitString(const std::string &src,const char s) const
+{
+    std::vector<std::string> v;
+    int p=0;
+    for (int i=0;i<src.length();i++)
+    {
+        if (src.at(i)==s)
+        {
+            v.push_back(src.substr(p,i));
+            p=i+1;
+        }
+    }
+    if (p<src.length())
+    {
+        v.push_back(src.substr(p,src.length()-p));
+    }
+    return v;
+}
+std::string Request::getPath() const
+{
+    std::vector<std::string> v=splitString(evhttp_request_get_uri(request),'?');
+    return v[0];
 }

@@ -12,7 +12,7 @@ public:
     void virtual process(Request &request) const
     {
         request.setHeader("Content-Type","text/html;charset=UTF-8");
-        request.end("<h1>H1 Here</h1><a href=\"/ok\">HERE</a><form action=\"/ok\" method=\"POST\"><input type=\"text\" name=\"sdf\" /><button type=\"submit\">OK</button></form>");
+        request.end("<h1>H1 Here</h1><a href=\"/ok?aaa=120391&bbb=333\">HERE</a><form action=\"/ok\" method=\"POST\"><input type=\"text\" name=\"sdf\" /><button type=\"submit\">OK</button></form>");
     };
 };
 

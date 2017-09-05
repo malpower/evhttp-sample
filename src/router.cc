@@ -10,13 +10,12 @@ void Router::addHandler(const RouteHandler *handler)
 
 
 
-void Router::handle(const char *path,Request &request)
+void Router::handle(Request &request)
 {
-    std::string p=path;
     std::vector<const RouteHandler*>::iterator it;
     for (it=handlers.begin();it!=handlers.end();it++)
     {
-        if ((*it)->match(p,request.method()))
+        if ((*it)->match(request.getPath(),request.method()))
         {
             (*it)->process(request);
             return;

@@ -28,6 +28,7 @@
                 "/usr/include/x86_64-linux-gnu",
                 "/usr/include",
                 "/usr/include/linux",
+                "/usr/lib/gcc/x86_64-linux-gnu/5/include",
                 "${workspaceRoot}/src"
             ],
             "defines": [],

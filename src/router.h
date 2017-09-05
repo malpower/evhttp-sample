@@ -9,7 +9,7 @@ class Router
 {
 public:
     static void addHandler(const RouteHandler *handler);
-    static void handle(const char *path,Request &request);
+    static void handle(Request &request);
 private:
     static std::vector<const RouteHandler*> handlers;
     static void give404(Request &request);

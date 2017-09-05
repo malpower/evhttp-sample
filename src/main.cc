@@ -9,7 +9,7 @@ using namespace std;
 void dispatch(evhttp_request *request,void *arg)
 {
     Request res(request);
-    Router::handle(evhttp_request_get_uri(request),res);
+    Router::handle(res);
 }
 
 
