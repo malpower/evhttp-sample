@@ -6,7 +6,11 @@ cmake . && make && ./build/sample
 
 ### About
 
-Just try to look, hope it will be useful for you.
+you can inherit from path-handler then override constructor and process method.
+
+You can bind a path to the handler class, like /aa/{b}/cc/{d}.
+
+Contact me if you have question.
 
 ### Licensing
 
