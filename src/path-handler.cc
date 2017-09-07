@@ -38,10 +38,10 @@ std::map<std::string,std::string> PathHandler::getUrlParameters(const Request &r
     std::ostringstream mt;
     for (int i=0;i<r2.mark_count();i++)
     {
-        mt<<"|$"<<(i+1);
+        mt<<"/$"<<(i+1);
     }
     std::string output=std::regex_replace(request.getPath(),r2,mt.str().substr(1));
-    std::vector<std::string> values=splitString(output,'|');
+    std::vector<std::string> values=splitString(output,'/');
     for (int i=0;i<names.size();i++)
     {
         res[names[i].substr(1,names[i].length()-2)]=values[i];
@@ -67,3 +67,5 @@ std::vector<std::string> PathHandler::splitString(const std::string &src,const c
     }
     return v;
 }
+
+
