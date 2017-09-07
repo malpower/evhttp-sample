@@ -82,7 +82,7 @@ vector<string> Request::splitString(const string &src,const char s) const
     {
         if (src.at(i)==s)
         {
-            v.push_back(src.substr(p,i));
+            v.push_back(src.substr(p,i-p));
             p=i+1;
         }
     }
